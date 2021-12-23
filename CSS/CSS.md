@@ -1,10 +1,10 @@
 # 1. Position
 
->Thuộc tính postion dùng để xác định kiểu vị trí cho một phần tử
+> Thuộc tính postion dùng để xác định kiểu vị trí cho một phần tử
 
 Thuộc tính Position có 5 giá trị khác nhau: static, relative, fixed, absolute, sticky. Sau đó dùng các thuộc tính top, bottom, left, right để định vị vị trí cho Element
 
-  <!-- static -->
+`<!-- static -->`
 
 Vị trí Element được đặt theo vị trí mặc định, và không anh hưởng bởi các thuộc tính top, bottom, left, right
 
@@ -12,7 +12,7 @@ Vị trí Element được đặt theo vị trí mặc định, và không anh h
       position: static;
     }
 
-  <!-- relative -->
+`<!-- relative -->`
 
     Định vị vị trí của phần tử so với vị trí bình thường của nó.
     Thông thường relative không được sử dụng một mình mà thường sử dụng trong thẻ cha và thẻ con có position: absolute; để di chuyển vị trí của thẻ con bên trong thẻ cha đó
@@ -23,7 +23,7 @@ Vị trí Element được đặt theo vị trí mặc định, và không anh h
       border: 3px solid #73AD21;
     }
 
-  <!-- absolute -->
+` <!-- absolute -->`
 
     Định vị vị trí Element so với thẻ cha gần nhất có thuộc tính position, ngoại trừ position static. Thường được dùng kết hợp với position: relative;
     Nếu không tìm thấy thẻ cha nào chứa position thẻ chứa position: absolute; sẽ lấy theo kích thước màn hình/ khung hình để làm vị trí tương đối để set các thuộc tính top, bottom, left, right.
@@ -44,7 +44,7 @@ Vị trí Element được đặt theo vị trí mặc định, và không anh h
       border: 3px solid #73AD21;
     }
 
-  <!-- fixed -->
+`<!-- fixed -->`
 
     Element có thuộc tính position: fixed; được định vị vị trí so với khung hình, và cố định trên khung hình khi cuộn trang. Sử dụng các thuộc tính top, bottom, left, right để đặt vị trí cho phần tử này trên khung hình
     Thường được sử dụng để cố định navBar, sideBar.
@@ -57,18 +57,19 @@ Vị trí Element được đặt theo vị trí mặc định, và không anh h
       border: 3px solid #73AD21;
     }
 
-  <!-- Sticky -->
+` <!-- Sticky -->`
 
 Element có thuộc tính position: sticky; sẽ được toggle giữa relative và fixed khi người dùng cuộn đến vị trí được set theo top, left, bottom, right thì position sẽ được đổi thành fixed.
 sticky thường thấy trong các trang bán hàng, thương mại điện tử
 
-div.sticky {
-position: -webkit-sticky; /_ Safari _/
-position: sticky;
-top: 100px;
-background-color: green;
-border: 2px solid #4CAF50;
-}
+    div.sticky {
+    position: -webkit-sticky; /_ Safari _/
+    position: sticky;
+    top: 100px;
+    background-color: green;
+    border: 2px solid #4CAF50;
+    }
+
 Ở ví dụ trên khi người dùng cuộn đến 100px thì thẻ div sẽ chuyển thành position: fixed; cố định tại 1 chỗ cách điểm trên khung hình website một khoảng 100px
 
 # 2. Z-index
@@ -79,52 +80,85 @@ border: 2px solid #4CAF50;
 
     Trục Y trong CSS dùng để căn theo trục dọc, các thuộc tính căn theo trục Y như: height, top, bottom, translateY,...
 
-    Trục Z hay Z-index dùng để căn theo chiều sâu, thứ tự đằng trước đằng sau, z-index càng lớn thì nó càng đứng trước các phần tử khác và sẽ đè lên các phần tử khác
+> Trục Z hay Z-index dùng để căn theo chiều sâu, thứ tự đằng trước đằng sau, z-index càng lớn thì nó càng đứng trước các phần tử khác và sẽ đè lên các phần tử khác
 
-# 3 - Specificity
+    box1{
+      height: 100px;
+      width: 100px;
+      backgroun-color:yellow;
+      z-index:1;
+    }
+     box2{
+      height: 100px;
+      width: 100px;
+      backgroun-color:orange;
+      z-index:10;
+    }
+    Vì box 2 có z-index lớn hớn z-index của box1 nên nó sẽ đè lên trên box1
 
-    trong CSS có nhiều cách để css cho một element:
-    - dùng inline CSS
-    - dùng extenal CSS: selector bằng IDs, Class, Element, pseudo-class, pseudo-elements,..
-    - hoặc dùng internal tương tự như external nhưng đặt trong thẻ <head> của file HTML
+# 3. Specificity
 
-Specificity có thể hiểu là thứ tự ưu tiên khi áp CSS cho element với các cách trên, cách css nào có điểm càng lớn thì sẽ được ưu tiên trước, và đè lên các cách CSS còn lại
+    Trong CSS có nhiều cách để css cho một element:
+    - Dùng inline CSS
+    - Dùng extenal CSS: selector bằng IDs, Class, Element, pseudo-class, pseudo-elements,..
+    - Hoặc dùng internal tương tự như external nhưng đặt trong thẻ <head> của file HTML
 
-Thứ tự ưu tiên bắt đầu từ 0 sẽ là: + 1000 điểm cho inline CSS + 100 điểm cho CSS bằng selector Ids + 10 điểm cho CSS bằng selector bằng Class, pseudo-class, element
+> Specificity có thể hiểu là thứ tự ưu tiên khi áp CSS cho element với các cách trên, cách css nào có điểm càng lớn thì sẽ được ưu tiên trước, và đè lên các cách CSS còn lại
+
+Thứ tự ưu tiên bắt đầu từ 0 sẽ là:
+
+- 1000 điểm cho inline CSS
+- 100 điểm cho CSS bằng selector Ids
+- 10 điểm cho CSS bằng selector bằng Class, pseudo-class, element
+
 Khi sử dụng cả IDs kết với với elements sẽ cộng điểm của cả 2
 
+```
 A: h1
 B: #content h1
 C: <div id="content"><h1 style="color: #ffffff">Heading</h1></div>
+```
+
 A: được 1 điểm
+
 B: được 101 điểm
+
 C: được 1000 điểm
 
-ví dụ: <div><p style="color: red">this is specificity</p></div> + trong file External: p{color: green} + trong thẻ <style> có
+```
+Ví dụ:CSS ở nhiều chỗ khác nhau
 
-<style>
-div p {
-color: orange;
-}
-</style>
++ CSS inline:
+  <div><p style="color: red">this is specificity</p></div>
 
-      ở đây CSS inline có specificity 1000 điểm nên nó sẽ bỏ qua các màu green, orange được css trong external và internal. Nếu không có CSS inline thì color sẽ ưu tiên CSS color: orange.
++ Trong file External:
+  p{color: green}
+
++ CSS internal:
+  <style>
+    div p {
+      color: orange;
+    }
+  </style>
+```
+
+Ở đây CSS inline có specificity 1000 điểm nên nó sẽ bỏ qua các màu green, orange được css trong external và internal. Nếu không có CSS inline thì color sẽ ưu tiên CSS color: orange.
 
 # 4. Box-model, box-sizing
 
-      box-model coi mỗi phần tử đều bao gồm: margins, borders, padding, content. Hiện nay trong devtool đều có hỗ trợ box-model
+Box-model coi mỗi phần tử đều bao gồm: margins, borders, padding, content. Hiện nay trong devtool đều có hỗ trợ box-model
 
-      + content là kích thước phần nội dung của element đó
-      + padding là khoảng cách giữa content và border
-      + border là phần viền bao quanh toàn bộ padding và content
-      + margin là khoảng cách giữa element và các phần tử xung quanh nó
+      + Content là kích thước phần nội dung của element đó
+      + Padding là khoảng cách giữa content và border
+      + Border là phần viền bao quanh toàn bộ padding và content
+      + Margin là khoảng cách giữa element và các phần tử xung quanh nó
 
-    Box-sizing là thuộc tính xác định tùy chỉnh kích thước đối với width(height) để thiết lập chiều rộng (chiều cao) theo các giá trị của box-sizing:
+Box-sizing là thuộc tính xác định tùy chỉnh kích thước đối với width(height) để thiết lập chiều rộng (chiều cao) theo các giá trị của box-sizing:
 
-    + content-box(default Value): các thuộc tính width, height sẽ đặt chiều rộng và chiều cao cho phần content của phần tử
-    + border-box: các thuộc tính width, height sẽ đặt chiều rộng và chiều cao cho toàn bộ phần tử, tính từ phần border vào, khi kích thước phần tử bị ảnh hưởng thì phần content sẽ bị co lại cho phù hợp với kích thước
-    + initial: sư dụng giá trị mặc định
-    + inherit: kế thừa từ phần tử cha
+    + Content-box(default Value): các thuộc tính width, height sẽ đặt chiều rộng và chiều cao cho phần content của phần tử
+    + Border-box: các thuộc tính width, height sẽ đặt chiều rộng và chiều cao cho toàn bộ phần tử, tính từ phần border vào, khi kích thước phần tử bị ảnh hưởng thì phần content sẽ bị co lại cho phù hợp với kích thước
+    + Initial: sư dụng giá trị mặc định
+    + Inherit: kế thừa từ phần tử cha
     Box-sizing thường dùng value: border-box và được set trong css selector của thẻ <html>
 
     html{
@@ -133,8 +167,9 @@ color: orange;
 
 # 5. Media-query- Responsive
 
-  >  được dùng để Responsive thay đổi kích thước các phần tử, layout, CSS phù hợp với kích thước màn hình ở các độ phân giải khác nhau.
-    tùy theo project mà dùng responsive theo mobile first hoặc laptop first
+> Được dùng để Responsive thay đổi kích thước các phần tử, layout, CSS phù hợp với kích thước màn hình ở các độ phân giải khác nhau.
+
+    Tùy theo project mà dùng responsive theo mobile first hoặc laptop first
 
     Các break-point thường được dùng là: 1200px, 1024px, 740px
 
@@ -155,22 +190,26 @@ color: orange;
 
     }
 
-# 6.Display: block, inline, inline-block
+# 6. Display: block, inline, inline-block
 
- >   - Display: inline;
-        Các item của phần tử chứa display: inline; sẽ nằm trên cùng một dòng, các item vượt quá độ dài sẽ tự động xuống dòng mới
-        Các item có kiểu display này không thể set width và height; chỉ có thể điều chỉnh margin và padding left và right (top và bottom không thể điều chỉnh)
+> - Display: inline;
 
- >   - Display: block;
-        Các item có kiểu display: block; luôn được xuống dòng và chiểm toàn bộ width của 1 dòng nếu nó không được set width. có thể điều chỉnh box-model theo tất cả các hướng
+    Các item của phần tử chứa display: inline; sẽ nằm trên cùng một dòng, các item vượt quá độ dài sẽ tự động xuống dòng mới
+    Các item có kiểu display này không thể set width và height; chỉ có thể điều chỉnh margin và padding left và right (top và bottom không thể điều chỉnh)
 
->  - Display: inline-block;
-        các item sẽ được dồn lên một hàng giống kiểu inline nhưng nó cũng có thể điều chỉnh các thuộc tính height, margin, padding đủ 4 hướng như block
+> - Display: block;
+
+    Các item có kiểu display: block; luôn được xuống dòng và chiểm toàn bộ width của 1 dòng nếu nó không được set width. có thể điều chỉnh box-model theo tất cả các hướng
+
+> - Display: inline-block;
+
+    Các item sẽ được dồn lên một hàng giống kiểu inline nhưng nó cũng có thể điều chỉnh các thuộc tính height, margin, padding đủ 4 hướng như block
 
 # 7. !important
 
-  >  thường đưuọc sử dụng để tăng specificity cho một element lên mức cao nhất, thuộc tính nào có !important sẽ ghi đè toàn bộ các thuộc tính tương đồng được CSS ở những chỗ khác
-  >  !important thường được dùng để đặt biến trong CSS. Không nên dùng !important ở các thuộc tính bình thường vì sẽ rất khó để bảo trì code, hoặc ghi đè nếu muốn
+> Thường đưuọc sử dụng để tăng specificity cho một element lên mức cao nhất, thuộc tính nào có !important sẽ ghi đè toàn bộ các thuộc tính tương đồng được CSS ở những chỗ khác
+
+> !important thường được dùng để đặt biến trong CSS. Không nên dùng !important ở các thuộc tính bình thường vì sẽ rất khó để bảo trì code, hoặc ghi đè nếu muốn
 
     :root {
       --primary-color: #aqua !important;
@@ -179,43 +218,50 @@ color: orange;
       color: var(--primary-color);
     }
 
-# 8. Các đơn vị px,em rem
+# 8. Các đơn vị px, em, rem
 
     Các đơn vị trong CSS chia thành 2 loại: đơn vị tuyệt đối và đơn vị tương đối.
- >   + Đơn vị tuyệt đối: px . Đơn vị được định nghĩa sãn không bị thay đổi khi thay đổi kích thước màn hình
 
-    + Đơn tương đối: %, em, rem,.. Đơn vị được đo lường dựa theo các thành phần khác. kích thước này sẽ thay đổi khi các phần tử nó phụ thuộc vào thay đổi. Phần tử mẹ mà các đơn vị này phụ thuộc như sau:
-      //%: phần tử nó phụ thuộc vào là phần tử mẹ gần nhất
-        Ex: <div class="box" style="width:500px">
-              <div class="box1" style="width: 50%">
-            </div>
-            => box1 set width= 50%, tương đương với 250 px
+> Đơn vị tuyệt đối: px . Đơn vị được định nghĩa sãn không bị thay đổi khi thay đổi kích thước màn hình
 
+> Đơn tương đối: %, em, rem,.. Đơn vị được đo lường dựa theo các thành phần khác. kích thước này sẽ thay đổi khi các phần tử nó phụ thuộc vào thay đổi. Phần tử mẹ mà các đơn vị này phụ thuộc như sau:
 
- >     // em: tham chiếu vào giá trị thuộc tính font-size của phần tử mẹ gần nhất
+    //%: Phần tử nó phụ thuộc vào là phần tử mẹ gần nhất
+
+      Ex: <div class="box" style="width:500px">
+            <div class="box1" style="width: 50%">
+          </div>
+          => box1 set width= 50%, tương đương với 250 px
+
+    // em: Tham chiếu vào giá trị thuộc tính font-size của phần tử mẹ gần nhất
+
         Ex: <div class="box" style="font-size: 20px">
               <div class="box1" style="width: 3em">
             </div>
             => box1 set width= 3em, tương đương với 3 lần font-size của thẻ div có class box là 60px
 
+    // rem: Tham chiếu vào giá trị thuộc tính font-size của phần tử gốc (hay giá trị thuộc tính font-size trong thẻ <html>)
 
- >     // rem: tham chiếu vào giá trị thuộc tính font-size của phần tử gốc (hay giá trị thuộc tính font-size trong thẻ <html>)
-      Ex: <html> {
-        font-size: 13px;
+    Ex: <html> {
+          font-size: 13px;
+          }
+          p {
+            font-size: 2rem;
+          }
         }
-        p {
-          font-size: 2rem;
-        }
-        => thẻ html có giá trị font-size bằng 13px, thẻ p có giá trị bằng 2rem tương đương với 2 lần 13px => p có font-size: 26px;
+    => thẻ html có giá trị font-size bằng 13px, thẻ p có giá trị bằng 2rem tương đương với 2 lần 13px => p có font-size: 26px;
 
 # 9. Overflow
 
-    Thuộc tính này cho biết điều gì sẽ xảy ra với phần nội dung có kích thước quá lớn so với phần kích thước mà nó được set trong CSS
+> Thuộc tính này cho biết điều gì sẽ xảy ra với phần nội dung có kích thước quá lớn so với phần kích thước mà nó được set trong CSS
+
     Ex:
         <p style="height=10px">một nội dung gì đó dài quá 2 dòng</p>
-        Khi nội dung dài quá 2 dòng nhưng kích thước thẻ chỉ cho phép cao 10px. Do vậy ta phải set thuộc tính Overflow để xử lý hiện tượng này.
+
+    Khi nội dung dài quá 2 dòng nhưng kích thước thẻ chỉ cho phép cao 10px. Do vậy ta phải set thuộc tính Overflow để xử lý hiện tượng này.
 
     Các giá trị của Overflow:
+
       + visible(mặc định): phần nội dung không bi bắt bớt. nó được hiển thị bên ngoài element
 
       + hidden: phần nội dung quá tải sẽ bị  ẩn đi
@@ -262,43 +308,47 @@ color: orange;
             color: $blue-color;
           }
 
-# 11. Căn giữa thẻ <div>
+# 11. Căn giữa thẻ div
 
-   > vì thẻ <div> là 1 thẻ có display mặc định là Block
+> Thẻ div có display mặc định là Block
 
     Các cách căn giữa
     1. margin-left, margin-right set là auto
-    div{
-          margin: 0 auto;
-    }
+
+      div{
+            margin: 0 auto;
+      }
+
     2. set position cho thẻ cha là relative, thẻ div đó là absolute
-    #container{
-      position: relative;
-    }
-    #container div{
-      position: absolute;
-      top:50%;
-      left:50%;
-      transform: translate(-50%,-50%)
-    }
+
+      #container{
+        position: relative;
+      }
+      #container div{
+        position: absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%,-50%)
+      }
 
     3. sử dụng flex-box
-    #container{
-      display: flex;
-      justify-content: center;
-      align-items:center;
-    }
-    #container div{
-    }
 
+      #container{
+        display: flex;
+        justify-content: center;
+        align-items:center;
+      }
+      #container div{
+      }
 
 # 12. Responsive element PC là hàng ngang, Mobile là hàng dọc
-  Sử dụng Responsive kết hợp với flexbox
 
-    Responsive PC first, sử dụng flex-box, khi chuyển sang màn hình Mobile dưới 740 px sẽ chuyển thành hàng dọc
+> Sử dụng Responsive kết hợp với flexbox
 
+> Responsive PC first, sử dụng flex-box, khi chuyển sang màn hình Mobile dưới 740 px sẽ chuyển thành hàng dọc
 
-    Code:
+````
+  Code:
 
 <html lang="en">
 <head>
@@ -346,4 +396,6 @@ color: orange;
 </body>
 </html>
 
+```
 
+````
